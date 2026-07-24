@@ -28,8 +28,9 @@ public class Marks {
             System.out.println("3. Get the average for a subject");
             System.out.println("4. Get the average for a student");
             System.out.println("5. Get the total mark of a student");
-            System.out.println("6. Exit");
-            System.out.print("Enter your choice (1-6): ");
+            System.out.println("6. Display all grades");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice (1-7): ");
             
             int choice = scanner.nextInt();
             
@@ -102,12 +103,21 @@ public class Marks {
                     break;
                     
                 case 6:
+                    for (int i = 0; i < n; i++) {
+                        String mathGrade = getGrade(marks[i][0]);
+                        String chemGrade = getGrade(marks[i][1]);
+                        String physGrade = getGrade(marks[i][2]);
+                        System.out.println("Student " + (i + 1) + "\n" + "Maths: " + mathGrade + "\n" + "Chemistry: " + chemGrade + "\n" + "Physics: " + physGrade);
+                    }
+                    break;
+                    
+                case 7:
                     keepRunning = false;
                     System.out.println("Exiting program. Goodbye!");
                     break;
                     
                 default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");
+                    System.out.println("Invalid choice. Please enter a number between 1 and 7.");
                     break;
             }
         }
@@ -121,5 +131,19 @@ public class Marks {
 
     private static boolean isValidSubject(int id) {
         return id >= 1 && id <= 3;
+    }
+
+    private static String getGrade(double score) {
+        if (score >= 90) {
+            return "Grade A";
+        } else if (score >= 80) {
+            return "Grade B";
+        } else if (score >= 70) {
+            return "Grade C";
+        } else if (score >= 60) {
+            return "Grade D";
+        } else {
+            return "Fail";
+        }
     }
 }
